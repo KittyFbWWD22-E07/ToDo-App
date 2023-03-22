@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "fullname": "Keturah Cathnott",
+      "username": "kcittycath",
+      "email": "kcathnott@gmail.com",
+      "id": 1
+    },
+    {
+      "fullname": "Lisa Bennett",
+      "username": "LisaB",
+      "email": "lbennett@mail.com",
+      "id": 2
+    },
+    {
+      "fullname": "Paul Reikhart",
+      "username": "PaulRiter",
+      "password": "aloha29",
+      "email": "paulreik@mail.com",
+      "id": 3
+    }
+  ]
+}

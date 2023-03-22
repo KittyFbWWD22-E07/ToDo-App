@@ -15,9 +15,9 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
-    "lowdb": "^5.0.5"
+    "lowdb": "^5.0.5",
+    "morgan": "^1.10.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FbW-WD-22-E07/todoapp_errorhandling_routing-KittyFbWWD22-E07.git"

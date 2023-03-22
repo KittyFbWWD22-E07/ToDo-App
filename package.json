@@ -1,10 +1,12 @@
 {
   "name": "be_todo_error_handling",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "description": "In this exercise, you will create some routes for users and todos in an Express app. Each todo will be defined by an id, title, description, date, and authorid. Each user will be defined by id,fullname, username, password, email.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +16,14 @@
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
     "lowdb": "^5.0.5"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FbW-WD-22-E07/todoapp_errorhandling_routing-KittyFbWWD22-E07.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FbW-WD-22-E07/todoapp_errorhandling_routing-KittyFbWWD22-E07/issues"
+  },
+  "homepage": "https://github.com/FbW-WD-22-E07/todoapp_errorhandling_routing-KittyFbWWD22-E07#readme"
 }

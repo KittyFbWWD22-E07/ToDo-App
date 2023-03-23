@@ -5,7 +5,8 @@
   "description": "In this exercise, you will create some routes for users and todos in an Express app. Each todo will be defined by an id, title, description, date, and authorid. Each user will be defined by id,fullname, username, password, email.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

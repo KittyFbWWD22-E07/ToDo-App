@@ -8,13 +8,12 @@ import createError from "http-errors";
 /* -------------------------------------------------------------------------- */
 export const getAllTodos = async (req, res, next) => {
     try {
-        console.log(db.data.todos);
         if (db.data.todos.length === 0) {
             return res.json({ message: "Sorry, there are no listed tasks at this time! 😞" })
         }
         res
             .status(200)
-            .json({ message: `There are ${db.data.todos.length} task logged 🛠️`, todos: db.data.todos });
+            .json(db.data.todos.length === 1 ? { message: `There is only ${db.data.todos.length} task logged 🛠️`, todos: db.data.todos } : { message: `There are ${db.data.todos.length} tasks logged 🛠️`, todos: db.data.todos });
 
     } catch (error) {
         next(error);
@@ -32,7 +31,7 @@ export const createNewTodo = async (req, res, next) => {
             date: new Date().toLocaleDateString(),
         };
         //check required fields
-        if (!newTodo.authorId || !newTodo.title || !newTodo.description) {
+        if (!newTodo.authorId || !newTodo.title || !newTodo.desc) {
             return next(createError(400, "Required information is missing! 🚨"));
         }
 

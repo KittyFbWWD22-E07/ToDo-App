@@ -1,4 +1,67 @@
 {
-  "users": [],
-  "todos": []
+  "users": [
+    {
+      "fullname": "Keturah Cathnott",
+      "username": "kittycath",
+      "password": "balooba24",
+      "email": "kcathnott@gmail.com",
+      "id": 1
+    },
+    {
+      "fullname": "Lisa Bennett",
+      "username": "lisaB",
+      "password": "cooper98",
+      "email": "lisabenn@mail.com",
+      "id": 2
+    },
+    {
+      "fullname": "Rayon Carruthers",
+      "username": "shippysailor",
+      "password": "hardyboys247",
+      "email": "raycart@mail.com",
+      "id": 3
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "title": "Web Dev Course",
+      "desc": "Review error handling",
+      "status": "incomplete",
+      "authorId": "1",
+      "date": "23/03/2023"
+    },
+    {
+      "id": 2,
+      "title": "Job Applications",
+      "desc": "Prepare cover letter for XYZ Company",
+      "status": "incomplete",
+      "authorId": "1",
+      "date": "23/03/2023"
+    },
+    {
+      "id": 3,
+      "title": "Web Dev Course",
+      "desc": "Work on frontend for todo-app",
+      "status": "incomplete",
+      "authorId": "2",
+      "date": "23/03/2023"
+    },
+    {
+      "id": 4,
+      "title": "Interview",
+      "desc": "Google meet for interview with ABC Company",
+      "status": "incomplete",
+      "authorId": "3",
+      "date": "23/03/2023"
+    },
+    {
+      "id": 5,
+      "title": "Web Dev Course",
+      "desc": "Request Certificate from DCI before interview",
+      "status": "incomplete",
+      "authorId": "3",
+      "date": "23/03/2023"
+    }
+  ]
 }

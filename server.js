@@ -1,10 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { Low, JSONFile } from 'lowdb';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
 import { userRouter } from './routers/users.router.js';
 import { todoRouter } from './routers/todos.router.js'
 import { mainErrorHandler, noRouteHandler } from './middlewares/errorHandler.middleware.js';
+import { env } from './config/environment.js';
 
 // create server
 let app = express();
@@ -16,7 +18,7 @@ await db.read();
 
 
 // initialize database
-db.data ||= { users: [], todos: [] };
+db.data = db.data || { users: [], todos: [] };
 
 // core middlewares
 app.use(express.json());
@@ -39,5 +41,5 @@ app.use(mainErrorHandler);
 
 
 // port
-const port = 5000;
+const port = env.port;
 app.listen(port, console.log(`server is up on port: ${port}. 👻`))

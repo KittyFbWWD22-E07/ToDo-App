@@ -106,12 +106,13 @@ export const deleteUser = async (req, res, next) => {
 
         //find user with given uid
         const userIndex = db.data.users.findIndex((u) => u.id === userid);
-        if (userIndex === -1) return next(createError(404, "There is no user with given userid. 🚨"))
+        if (userIndex === -1) return next(createError(404, "There is no user with the given user id. 🚨"))
 
         //delete user from array of users
+        const userName = db.data.users[userIndex].username;
         db.data.users.splice(userIndex, 1);
         await db.write();
-        res.status(200).json({ message: "User deleted! ✅" });
+        res.status(200).json({ message: `User ${userName} has been deleted! ✅` });
     } catch (err) {
         next(err);
     }

@@ -4,7 +4,7 @@ import createError from "http-errors";
 
 
 /* -------------------------------------------------------------------------- */
-/*                                Retrieve All Todos                               */
+/*                                Retrieve All Todos                          */
 /* -------------------------------------------------------------------------- */
 export const getAllTodos = async (req, res, next) => {
     try {
@@ -27,8 +27,9 @@ export const getAllTodos = async (req, res, next) => {
 export const createNewTodo = async (req, res, next) => {
     try {
         const newTodo = {
-            ...req.body,
             id: db.data.todos.slice(-1)[0]?.id + 1 || 1,
+            ...req.body,
+            date: new Date().toLocaleDateString(),
         };
         //check required fields
         if (!newTodo.authorId || !newTodo.title || !newTodo.description) {
@@ -36,13 +37,13 @@ export const createNewTodo = async (req, res, next) => {
         }
 
         //add newUser to array of users in db
-        db.data.users.push(newTodo);
+        db.data.todos.push(newTodo);
         await db.write();
-        //remove password from newUser for security
+        //remove password from newtodo for security
         delete newTodo.password;
         res.status(200).json({
             message: "Successfully logged! ✅",
-            user: newTodo,
+            todo: newTodo,
         });
     } catch (err) {
         next(err);
@@ -61,7 +62,7 @@ export const getTodo = async (req, res, next) => {
         if (isNaN(todoid)) return next(createError(400, "The id given in the url is not valid. 🚨"))
 
         //find todo with given tdid
-        const todo = db.data.todos.find((td) => td.id === todoid);
+        const todo = db.data.todos.find((td) => td.id == todoid);
         if (!todo) return next(createError(404, "There is no task with the given id. 🚨"))
 
         res.status(200).json({ message: "Task retrieved! ✅", todo: todo });
@@ -111,9 +112,11 @@ export const deleteTodo = async (req, res, next) => {
         if (todoIndex === -1) return next(createError(404, "There is no task with the given id. 🚨"))
 
         //delete todo from array of todos
+        const deletedTodo = db.data.todos[todoIndex].title;
+        const todoAuthor = db.data.todos[todoIndex].username;
         db.data.todos.splice(todoIndex, 1);
         await db.write();
-        res.status(200).json({ message: "Task deleted! ✅" });
+        res.status(200).json({ message: `Task: ${deletedTodo}, created by ${todoAuthor} has been deleted! ✅` });
     } catch (err) {
         next(err);
     }

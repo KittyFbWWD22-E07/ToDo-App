@@ -64,7 +64,7 @@ export const getTodo = async (req, res, next) => {
         const todo = db.data.todos.find((td) => td.id == todoid);
         if (!todo) return next(createError(404, "There is no task with the given id. 🚨"))
 
-        res.status(200).json({ message: "Task retrieved! ✅", todo: todo });
+        res.status(200).json({ message: `Task retrieved! ✅`, todo: todo });
     } catch (err) {
         next(err);
     }
@@ -88,7 +88,7 @@ export const updateTodo = async (req, res, next) => {
         db.data.todos[todoIndex] = { ...db.data.todos[todoIndex], ...req.body };
         await db.write();
         res.status(200).json({
-            message: "Task successfully updated! ✅",
+            message: `Task has been successfully updated! ✅`,
             todo: db.data.todos[todoIndex],
         });
     } catch (err) {

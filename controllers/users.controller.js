@@ -12,6 +12,7 @@ export const getAllUsers = (req, res, next) => {
         if (db.data.users.length === 0) {
             return res.json({ message: "Sorry, there are no registered users at this time! 😞" })
         }
+        db.data.users.forEach(user => delete user.password);
         res
             .status(200)
             .json({ message: `You have ${db.data.users.length} registered user(s) 🙌`, users: db.data.users });
@@ -32,7 +33,7 @@ export const createNewUser = async (req, res, next) => {
         };
         //check required fields
         if (!newUser.username || !newUser.password) {
-            return next(createError(400, "required fields are missing! 🚨"));
+            return next(createError(400, "Required fields are missing! 🚨"));
         }
 
         //add newUser to array of users in db
@@ -41,7 +42,7 @@ export const createNewUser = async (req, res, next) => {
         //remove password from newUser for security
         delete newUser.password;
         res.status(200).json({
-            message: "successfully registered! ✅",
+            message: "Successfully registered! ✅",
             user: newUser,
         });
     } catch (err) {
@@ -62,8 +63,9 @@ export const getUser = async (req, res, next) => {
 
         //find user with given uid
         const user = db.data.users.find((u) => u.id === userid);
-        if (!user) return next(createError(404, "There is no user with given userid. 🚨"))
+        if (!user) return next(createError(404, "There is no user with given user id. 🚨"))
 
+        delete user.password;
         res.status(200).json({ message: "User retrieved! ✅", user: user });
     } catch (err) {
         next(err);
@@ -103,6 +105,7 @@ export const deleteUser = async (req, res, next) => {
     try {
         const userid = parseInt(req.params.uid);
         //check if uid is valid
+        if (isNaN(userid)) return next(createError(400, "userid in url is not valid. 🚨"))
 
         //find user with given uid
         const userIndex = db.data.users.findIndex((u) => u.id === userid);
